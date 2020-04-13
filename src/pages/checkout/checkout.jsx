@@ -10,6 +10,7 @@ import {
 import CheckoutItem from "../../component/checkout-item/checkout-item";
 import "./checkout.scss";
 import CartItem from "../../component/cart-item/cart-tem";
+import StripeButton from "../../component/stripe-button/stripe-button";
 
 const Checkout = ({ cartItems, cartTotal }) => {
   return (
@@ -35,6 +36,7 @@ const Checkout = ({ cartItems, cartTotal }) => {
         <CheckoutItem key={cartItem.id} cartItem={cartItem} />
       ))}
       <div className="total">TOTAL: ${cartTotal}</div>
+      <StripeButton price={cartTotal} />
     </div>
   );
 };
