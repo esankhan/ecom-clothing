@@ -9,7 +9,6 @@ import {
 
 import CheckoutItem from "../../component/checkout-item/checkout-item";
 import "./checkout.scss";
-import CartItem from "../../component/cart-item/cart-tem";
 import StripeButton from "../../component/stripe-button/stripe-button";
 
 const Checkout = ({ cartItems, cartTotal }) => {

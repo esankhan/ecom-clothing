@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
@@ -8,25 +8,12 @@ import ShopPage from "./pages/shop/shop";
 import SignInAndSignUp from "./pages/sign-in-and-sign-up/sign-in-and-sign-up";
 import Checkout from "./pages/checkout/checkout";
 import Header from "./component/header/header";
-import { setCurrentUser } from "./store/user/userActions";
+import { checkUserSession } from "./store/user/userActions";
 import { selectCurrentUser } from "./store/user/userSelector";
-import { auth, createUserProfileDocument } from "./firebase/firebase-utils";
 
-const App = (props) => {
+const App = ({ checkUserSession, currentUser }) => {
   useEffect(() => {
-    auth.onAuthStateChanged(async (userAuth) => {
-      const userRef = await createUserProfileDocument(userAuth);
-      if (userAuth) {
-        userRef.onSnapshot((snapshot) => {
-          props.setCurrentUser({
-            id: snapshot.id,
-            ...snapshot.data(),
-          });
-        });
-      } else {
-        props.setCurrentUser(userAuth);
-      }
-    });
+    checkUserSession();
   }, []);
   return (
     <div>
@@ -39,7 +26,7 @@ const App = (props) => {
           exact
           path="/signin"
           render={() =>
-            props.currentUser ? <Redirect to="/" /> : <SignInAndSignUp />
+            currentUser ? <Redirect to="/" /> : <SignInAndSignUp />
           }
         />
       </Switch>
@@ -52,7 +39,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+  checkUserSession: () => dispatch(checkUserSession()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
