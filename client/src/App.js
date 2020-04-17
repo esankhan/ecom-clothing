@@ -14,7 +14,7 @@ import { selectCurrentUser } from "./store/user/userSelector";
 const App = ({ checkUserSession, currentUser }) => {
   useEffect(() => {
     checkUserSession();
-  }, []);
+  }, [checkUserSession]);
   return (
     <div>
       <Header />

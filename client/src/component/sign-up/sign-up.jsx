@@ -17,7 +17,6 @@ const SignUp = ({ signUpStart }) => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    console.log(name);
     setRegister({ ...register, [name]: value });
   };
 
