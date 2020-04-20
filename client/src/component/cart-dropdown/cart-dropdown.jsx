@@ -6,7 +6,7 @@ import { selectCartItems } from "../../store/cart/cartSelector";
 import { toggleHiddenCart } from "../../store/cart/cartActions";
 import CartItem from "../cart-item/cart-tem";
 import CustomButton from "../custom-button/custom-button";
-import "./cart-dropdown.scss";
+import "./cart-dropdown.scss"; 
 
 const CartDropdown = ({ cartItems, history, dispatch }) => (
   <div className="cart-dropdown">
