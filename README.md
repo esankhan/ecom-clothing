@@ -1,3 +1,3 @@
 ## E-commerce Fashion Store.
-    ### Built using React, Firebase.
+   ### Built using React, Firebase.
   
